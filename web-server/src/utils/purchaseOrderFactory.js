@@ -1,14 +1,14 @@
 priceCalculationService = require('./priceCalculationService')
 
 
-function purchaseOrderFactory(item,specifications){
+function purchaseOrderFactory(specifications){
     
     var purchaseOrder 
   
-    if(item==='Burger'){
+    if(specifications.item==='burger'){
     purchaseOrder = new BurgerOrder(specifications.salad,specifications.cheese,specifications.cutlet)
     const totalNetValue =  priceCalculationService(specifications)
-    purchaseOrder.item = item 
+    purchaseOrder.item=specifications.item
     purchaseOrder.name=specifications.name
     purchaseOrder.totalNetValue = totalNetValue    
     purchaseOrder.quantity =specifications.quantity 
@@ -24,7 +24,7 @@ function BurgerOrder(salad,cheese,cutlet){
     salad:salad,
     cheese:cheese,
     cutlet:cutlet,
-    others : baseRate('burger') 
+    burger : 1 
 }
 
 }    

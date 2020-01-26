@@ -1,12 +1,11 @@
 {
   "name": "burgerapp",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "dependencies": {
     "express": "^4.17.1",
     "fs": "0.0.1-security",
-    "hbs": "^4.0.4",
+    "hbs": "^4.1.0",
     "jquery": "^3.4.1",
     "mongodb": "^3.5.2",
     "request": "^2.88.0"
@@ -17,5 +16,14 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JESINAMINA/purchaseOrderApplication.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JESINAMINA/purchaseOrderApplication/issues"
+  },
+  "homepage": "https://github.com/JESINAMINA/purchaseOrderApplication#readme",
+  "description": ""
 }

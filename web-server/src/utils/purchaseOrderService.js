@@ -50,6 +50,11 @@ function createPurchaseOrder(purchaseOrder) {
 
 async function retrieveAllPurchaseOrders(filter){
 
+  if (filter.SalesPerson!==undefined){
+  var string = filter.SalesPerson
+  filter.SalesPerson = new RegExp(["^", string, "$"].join(""), "i")
+  }
+  else filter = {}
 var retrievePurchaseOrders = new Promise ((res,rej)=> {
 
   let purchaseOrders,totalNetValue
@@ -73,12 +78,13 @@ var retrievePurchaseOrders = new Promise ((res,rej)=> {
         }
       ]).toArray((err,result)=>{
         totalNetValue = result
-
+        if(totalNetValue.length===0)
+          totalNetValue.push({total:0})
+      
         res({purchaseOrders:purchaseOrders,totalNetValue:totalNetValue[0].total})
+
+
       });
-
-
-
 
 })
 

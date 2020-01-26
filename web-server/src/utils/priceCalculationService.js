@@ -32,4 +32,4 @@ function retrieveBasePrice(item){
 }
 
 
-module.exports = {priceCalculationService 
+module.exports = priceCalculationService 

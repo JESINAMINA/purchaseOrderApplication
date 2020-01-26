@@ -24,6 +24,8 @@ hbs.registerPartials(partialsPath)
 app.use(express.static(publicDirectoryPath))
 
 app.get('', (req, res) => {
+
+
     res.render('index', {
         title: 'Burger Joint',
         name: 'Jesin'
@@ -37,12 +39,12 @@ app.get('/change', (req, res) => {
      res.send({totalNetValue:totalNetValue}) 
  })
 
-app.get('/order', (req, res) => {
+app.get('/order', async (req, res) => {
 
      let customisation = req.query
-     let purchaseOrder = purchaseOrderFactory('Burger',customisation)
+     let purchaseOrder = await purchaseOrderFactory(customisation)
      purchaseOrderService.createPurchaseOrder(purchaseOrder) 
-     res.send({}) 
+     res.send({totalNetValue : purchaseOrder.totalNetValue}) 
       
  })
 app.get('/list', async (req, res) => {

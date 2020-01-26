@@ -5,7 +5,7 @@
 <head>
     <title>Purchase Orders</title>
     <link rel="icon" href="/img/burger.png">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/list.css">
     <link rel="stylesheet" href="/css/table.css">
 
   <script src="css/jquery-latest.min.js"></script>
@@ -17,11 +17,9 @@
     <div class="main-content">
         {{>header}}
         <form id="findform" action="/list" role="form" method="post">
-            <label for="filter">Sales Person </label>
-            <input type="text" name="salesPerson">
-            <label for="filter">Date</label>
-
-            <input type="submit" name="something"><br><br>
+            <label for="filter">Sales person :</label>
+            <input type="text" name="salesPerson" placeholder="name">
+            <input type="submit" value= "Go" name="something"><br><br>
         </form>
 
         {{#if list.length}}
