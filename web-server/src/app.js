@@ -31,7 +31,7 @@ app.get('', (req, res) => {
 })
 
 app.get('/change', (req, res) => {
-    console.log('change got hit ')
+
     let customisation = req.query
     let totalNetValue = priceCalculationService(customisation)
     res.send({ totalNetValue: totalNetValue })
@@ -85,6 +85,14 @@ app.get('/help', (req, res) => {
         name: 'Jesin'
     })
 })
+
+app.get('/autocomplete', async(req, res) => {
+
+    let data = await purchaseOrderDBService.retrieveDistinctNames()
+    res.send({ data })
+
+});
+
 
 app.get('*', (req, res) => {
     res.render('404', {
