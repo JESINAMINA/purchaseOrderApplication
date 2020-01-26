@@ -4,7 +4,7 @@ const fs = require('fs')
 function priceCalculationService(ingredients){
 
 const priceList = loadPriceList();
-let totalNetValue = load ;
+let totalNetValue = 0 ;
 
 for(let i of Object.keys(ingredients)){
    let item =  priceList.find((x)=>(i=== x.item))
