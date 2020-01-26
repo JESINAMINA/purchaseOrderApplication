@@ -1,14 +1,14 @@
 const path = require('path')
 const express = require('express')
 const hbs = require('hbs')
-const purchaseOrderService = require('./utils/purchaseOrderService')
+const purchaseOrderDBService = require('./utils/purchaseOrderDBService')
 const app = express()
 const purchaseOrderFactory = require('./utils/purchaseOrderFactory')
 const priceCalculationService = require('./utils/priceCalculationService')
 var bodyParser = require('body-parser'); 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
-console.log(__dirname)
+
 
 // Define paths for Express config
 const publicDirectoryPath = path.join(__dirname, '../public')
@@ -24,8 +24,6 @@ hbs.registerPartials(partialsPath)
 app.use(express.static(publicDirectoryPath))
 
 app.get('', (req, res) => {
-
-
     res.render('index', {
         title: 'Burger Joint',
         name: 'Jesin'
@@ -43,21 +41,19 @@ app.get('/order', async (req, res) => {
 
      let customisation = req.query
      let purchaseOrder = await purchaseOrderFactory(customisation)
-     purchaseOrderService.createPurchaseOrder(purchaseOrder) 
+     purchaseOrderDBService.createPurchaseOrder(purchaseOrder) 
      res.send({totalNetValue : purchaseOrder.totalNetValue}) 
       
  })
 app.get('/list', async (req, res) => {
 
-     let data  = await  purchaseOrderService.retrievePurchaseOrders(req.query)
-
+     let data  = await  purchaseOrderDBService.retrievePurchaseOrders(req.query)
     res.render('list', {
         title: 'Purchase Orders',
         name: 'Jesin',
         list:data.purchaseOrders,
         total:data.totalNetValue
     })
-
    
 })
 
@@ -69,7 +65,7 @@ app.post('/list', async (req, res,next) => {
     else 
     filter = {}
 
-   let data  = await  purchaseOrderService.retrievePurchaseOrders(filter)
+   let data  = await  purchaseOrderDBService.retrievePurchaseOrders(filter)
 
    res.render('list', {
        title: 'Purchase Orders',

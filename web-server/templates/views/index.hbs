@@ -13,10 +13,8 @@
     <div class="main-content">
         {{>header}}
 
-       
+        <form id="purchaseOrder">
 
-        <form id = "wthr" >
-           
             <input placeholder="Sales person" type="text" required><br><br>
             Salad:<br><br>
             <label class="container">
@@ -27,21 +25,22 @@
                 <input type="radio" id="no" name="choice" value="0"> No<br><br>
                 <span class="checkmark"></span>
             </label>
-            <label for="cheese">Cheese slice: (Qty)<label> 
-            <input type = "number" class="quantity" name="cheese" value = 0  min=0 max=5 ><br><br>
-            <label for="cutlet">Cutlet <span class="tab">: (Qty)</span></label>
-            <input type = "number" class="quantity" name="cutlet" value = 0 min=0 max=3 >
-           <span class="tab"> <label for="quantity">Total Qty :</label></span>
-            <input type = "number" class="quantity" id="quantity" value = 1 min =1 max=10 >
-            <br><br>
-         <span id="symbol">&#x20b9</span><input name ="priceBox" style="font-size:25px"   id = "price" value=0 class ="priceContainer" readonly>
-            
-            
-            <button id="search" class="submit">Submit</button>
+            <label for="cheese">Cheese slice: (Qty)<label>
+                    <input type="number" class="quantity" id="cheese" value=0 min=0 max=5><br><br>
+                    <label for="cutlet">Cutlet <span class="tab">: (Qty)</span></label>
+                    <input type="number" class="quantity" id="cutlet" value=0 min=0 max=3>
+                    <span class="tab"> <label for="quantity">Total Qty :</label></span>
+                    <input type="number" class="quantity" id="quantity" value=1 min=1 max=10>
+                    <br><br>
+                    <span id="symbol">&#x20b9</span><input name="priceBox" style="font-size:25px" id="price" value=0
+                        class="priceContainer" readonly>
+
+
+                    <button id="search" class="submit">Submit</button>
         </form>
-    
-      
-    
+
+
+
     </div>
 
     {{>footer}}

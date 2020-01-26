@@ -1,3 +1,14 @@
+/*
+purchaseOrderFactory 
+input - Order item,customisations&quantity 
+output - purchase order object exclusive to the order item .
+*this also includes the base ingredients of the item and it's quantity*
+ has the below properties --
+*sales person name,item name,total price,quantity,all ingredients and their quantity*
+*/
+
+
+
 priceCalculationService = require('./priceCalculationService')
 
 
@@ -16,7 +27,10 @@ function purchaseOrderFactory(specifications){
     return purchaseOrder;
     
     }
-   
+   /*In an industrial scenario 
+    this function should be generic to any item 
+    and retrieve the rates of basic ingredients 
+    from the DB */
  
 function BurgerOrder(salad,cheese,cutlet){
   
@@ -28,8 +42,5 @@ function BurgerOrder(salad,cheese,cutlet){
 }
 
 }    
-
-
-
 
 module.exports=purchaseOrderFactory
