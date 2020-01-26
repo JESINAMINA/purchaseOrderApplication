@@ -27,9 +27,5 @@ return priceList ;
 
 }
 
-function retrieveBasePrice(item){
-    return 10 
-}
-
 
 module.exports = priceCalculationService 

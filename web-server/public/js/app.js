@@ -6,7 +6,7 @@ const cheese = document.getElementsByName("cheese")
 const cutlet = document.getElementsByName("cutlet")
 const priceBox = document.getElementsByName("priceBox")
 const quantity = document.getElementById("quantity")
-var event = new Event('change');
+const event = new Event('change');
 
     purchaseOrder.addEventListener('change', (e) =>  {
 
