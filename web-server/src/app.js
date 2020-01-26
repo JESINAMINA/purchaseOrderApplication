@@ -5,9 +5,9 @@ const purchaseOrderDBService = require('./utils/purchaseOrderDBService')
 const app = express()
 const purchaseOrderFactory = require('./utils/purchaseOrderFactory')
 const priceCalculationService = require('./utils/priceCalculationService')
-var bodyParser = require('body-parser'); 
+var bodyParser = require('body-parser');
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 
 // Define paths for Express config
@@ -27,52 +27,54 @@ app.get('', (req, res) => {
     res.render('index', {
         title: 'Burger Joint',
         name: 'Jesin'
-    })  
+    })
 })
 
 app.get('/change', (req, res) => {
     console.log('change got hit ')
-     let customisation = req.query
-     let totalNetValue = priceCalculationService(customisation)
-     res.send({totalNetValue:totalNetValue}) 
- })
+    let customisation = req.query
+    let totalNetValue = priceCalculationService(customisation)
+    res.send({ totalNetValue: totalNetValue })
+})
 
-app.get('/order', async (req, res) => {
+app.get('/order', async(req, res) => {
 
-     let customisation = req.query
-     let purchaseOrder = await purchaseOrderFactory(customisation)
-     purchaseOrderDBService.createPurchaseOrder(purchaseOrder) 
-     res.send({totalNetValue : purchaseOrder.totalNetValue}) 
-      
- })
-app.get('/list', async (req, res) => {
+    let customisation = req.query
+    let purchaseOrder = await purchaseOrderFactory(customisation)
+    if (purchaseOrder !== {}) {
+        purchaseOrderDBService.createPurchaseOrder(purchaseOrder)
+        res.send({ totalNetValue: purchaseOrder.totalNetValue })
+    } else
+        res.send({ error: new Error('Invalid order') })
+})
+app.get('/list', async(req, res) => {
 
-     let data  = await  purchaseOrderDBService.retrievePurchaseOrders(req.query)
+    let data = await purchaseOrderDBService.retrievePurchaseOrders(req.query)
     res.render('list', {
         title: 'Purchase Orders',
         name: 'Jesin',
-        list:data.purchaseOrders,
-        total:data.totalNetValue
+        list: data.purchaseOrders,
+        total: data.totalNetValue
     })
-   
+
 })
 
-app.post('/list', async (req, res,next) => {
-    
+app.post('/list', async(req, res, next) => {
+
     let filter
-    if(req.body.salesPerson!=="")
-    filter = {SalesPerson:req.body.salesPerson}
-    else 
-    filter = {}
+    if (req.body.salesPerson !== "")
+        filter = { SalesPerson: req.body.salesPerson }
+    else
+        filter = {}
 
-   let data  = await  purchaseOrderDBService.retrievePurchaseOrders(filter)
+    let data = await purchaseOrderDBService.retrievePurchaseOrders(filter)
 
-   res.render('list', {
-       title: 'Purchase Orders',
-       name: 'Jesin',
-       list:data.purchaseOrders,
-       total:data.totalNetValue
-   })
+    res.render('list', {
+        title: 'Purchase Orders',
+        name: 'Jesin',
+        list: data.purchaseOrders,
+        total: data.totalNetValue
+    })
 
 })
 
