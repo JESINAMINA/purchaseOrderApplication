@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "main": "index.js",
     "dependencies": {
-        "express": "^4.17.1",
+        "express": "^4.17.3",
         "fs": "0.0.1-security",
         "hbs": "^4.1.0",
         "jquery": "^3.4.1",
